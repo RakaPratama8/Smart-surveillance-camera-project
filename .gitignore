@@ -1,2 +1,6 @@
 .venv
 secrets
+runs
+__pycache__/
+*.pyc
+bus.jpg
