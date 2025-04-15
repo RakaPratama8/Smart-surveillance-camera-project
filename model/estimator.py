@@ -61,17 +61,26 @@ class CrowdDensityEstimation:
     def display_output(self, im0: np.ndarray, density_info: Tuple[float, str, int]) -> None:
         """
         Displays the output on the frame.
-        
+
         Args:
             im0 (numpy.ndarray): The input image/frame.
             density_info (tuple): A tuple containing the density value, level, and person count.
         """
         density_value, density_level, person_count = density_info
 
-        cv2.rectangle(im0, (0, 0), (350, 150), (0, 0, 0), -1)
-        cv2.putText(im0, f'Density Level: {density_level}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-        cv2.putText(im0, f'Person Count: {person_count}', (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-        cv2.putText(im0, f'Density Value: {density_value:.2f}', (10, 110), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+        # Adjust rectangle size and position for smaller frames
+        cv2.rectangle(im0, (0, 0), (100, 80), (0, 0, 0), -1)
+
+        # Adjust font size and position for smaller frames
+        font_scale = 0.4  # Smaller font size
+        thickness = 1     # Thinner text
+        color = (0, 255, 0)  # Green text
+
+        cv2.putText(im0, f'Density: {density_level}', (5, 20), cv2.FONT_HERSHEY_SIMPLEX, font_scale, color, thickness)
+        cv2.putText(im0, f'Count: {person_count}', (5, 40), cv2.FONT_HERSHEY_SIMPLEX, font_scale, color, thickness)
+        cv2.putText(im0, f'Value: {density_value:.2f}', (5, 60), cv2.FONT_HERSHEY_SIMPLEX, font_scale, color, thickness)
+
+        # Display the frame
         cv2.imshow('Crowd Density Estimation', im0)
 
     def process_frame(self, frame: np.ndarray) -> Tuple[np.ndarray, Tuple[float, str, int], List]:

@@ -1,13 +1,21 @@
 import cv2
 import supervision as sv
 
-URL = ""
+URL = "http://192.168.100.130"
 
 def initialize_camera():
     """Initializes the camera and returns the VideoCapture object."""
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(URL + ":81/stream")
+    
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+    cap.set(cv2.CAP_PROP_FPS, 30)
+    
     if not cap.isOpened():
         raise RuntimeError("Failed to open the camera.")
+    
+    
+
     return cap
 
 def process_video_frame(estimator, dot_annotator, frame):
