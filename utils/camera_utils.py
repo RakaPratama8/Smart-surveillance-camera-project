@@ -1,6 +1,8 @@
 import cv2
 import supervision as sv
 
+URL = ""
+
 def initialize_camera():
     """Initializes the camera and returns the VideoCapture object."""
     cap = cv2.VideoCapture(0)

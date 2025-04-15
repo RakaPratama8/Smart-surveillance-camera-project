@@ -3,5 +3,4 @@ secrets
 runs
 __pycache__/
 *.pyc
-bus.jpg
 .streamlit
