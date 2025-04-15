@@ -15,7 +15,7 @@ def main():
 
         process_video_frame(estimator, dot_annotator, frame)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(30) & 0xFF == ord('q'):
             break
 
     cap.release()
