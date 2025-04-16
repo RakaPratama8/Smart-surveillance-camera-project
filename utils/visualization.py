@@ -13,12 +13,7 @@ def build_payload(variable_1: float, variable_2: str, variable_3: int):
     
     payload = {
         "density_value": variable_1,
-        "density_level": {
-            "value": variable_2,
-            "context": {
-                "unit": "persons/m²"
-            }
-        },
+        "density_level": variable_2,
         "person_count": variable_3
     }
 
@@ -38,10 +33,10 @@ def post_request(payload):
         req = requests.post(url=url, headers=headers, json=payload)
         status = req.status_code
         attempts += 1
-        time.sleep(1)
+        time.sleep(0.5)
 
     # Processes results
-    print(req.status_code, req.json())
+    print("\n"+req.status_code, req.json())
     if status >= 400:
         print("[ERROR] Could not send data after 5 attempts, please check \
             your token credentials and internet connection")

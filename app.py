@@ -55,8 +55,8 @@ def main():
         
         payload = build_payload(
             variable_1=f"{density_info[0]:.2f}",
-            variable_2=density_info[1],
-            variable_3=density_level_val,
+            variable_2=density_level_val,
+            variable_3=density_info[2],
         )
         
         post_request(payload)
