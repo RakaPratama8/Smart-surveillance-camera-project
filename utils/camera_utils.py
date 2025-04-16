@@ -16,8 +16,6 @@ def initialize_camera():
     if not cap.isOpened():
         raise RuntimeError("Failed to open the camera.")
     
-    
-
     return cap
 
 def process_video_frame(estimator, dot_annotator, frame):

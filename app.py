@@ -1,7 +1,8 @@
 import streamlit as st
 from model.estimator import CrowdDensityEstimation
-from utils.camera_utils import initialize_camera, process_video_frame
+from utils.camera_utils import initialize_camera
 import supervision as sv
+from utils.visualization import build_payload, post_request
 
 
 def main():
@@ -38,6 +39,14 @@ def main():
         dot_annotator.annotate(scene=frame, detections=detections)
         
         frame_placeholder.image(processed_frame, channels="BGR", use_container_width=True)
+        
+        payload = build_payload(
+            variable_1=f"{density_info[0]:.2f}",
+            variable_2=density_info[1],
+            variable_3=density_info[2],
+        )
+        
+        post_request(payload)
         
         density_value.metric("Density Value (persons/m²)", f"{density_info[0]:.2f}")
         density_level.metric("Density Level", density_info[1])
