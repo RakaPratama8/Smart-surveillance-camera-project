@@ -1,9 +1,9 @@
 import streamlit as st
+import supervision as sv
+
 from model.estimator import CrowdDensityEstimation
 from utils.camera_utils import initialize_camera
-import supervision as sv
 from utils.visualization import build_payload, post_request
-
 
 def main():
     st.title("Crowd Density Estimation")

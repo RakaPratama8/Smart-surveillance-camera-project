@@ -1,4 +1,3 @@
-import time
 import requests
 
 TOKEN = "BBUS-0uskZVL6b5rQLpgl4JYU20HZYxNh03"
@@ -33,10 +32,10 @@ def post_request(payload):
         req = requests.post(url=url, headers=headers, json=payload)
         status = req.status_code
         attempts += 1
-        time.sleep(0.5)
 
     # Processes results
-    print("\n"+req.status_code, req.json())
+    print("")
+    print(req.status_code, req.json())
     if status >= 400:
         print("[ERROR] Could not send data after 5 attempts, please check \
             your token credentials and internet connection")

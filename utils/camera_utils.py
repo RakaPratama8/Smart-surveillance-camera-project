@@ -6,8 +6,8 @@ WEBCAM = 0
 
 def initialize_camera():
     """Initializes the camera and returns the VideoCapture object."""
-    cap = cv2.VideoCapture(URL)
-    # cap = cv2.VideoCapture(WEBCAM)
+    # cap = cv2.VideoCapture(URL)
+    cap = cv2.VideoCapture(WEBCAM)
     
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
