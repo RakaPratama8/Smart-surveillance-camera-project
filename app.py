@@ -40,10 +40,23 @@ def main():
         
         frame_placeholder.image(processed_frame, channels="BGR", use_container_width=True)
         
+        density_level_val = 0
+        
+        if density_info[1] == "Low":
+            density_level_val = 1
+        elif density_info[1] == "Medium":
+            density_level_val = 2
+        elif density_info[1] == "High":
+            density_level_val = 3
+        elif density_info[1] == "Very High":
+            density_level_val = 4
+        else:
+            density_level_val = 0
+        
         payload = build_payload(
             variable_1=f"{density_info[0]:.2f}",
             variable_2=density_info[1],
-            variable_3=density_info[2],
+            variable_3=density_level_val,
         )
         
         post_request(payload)

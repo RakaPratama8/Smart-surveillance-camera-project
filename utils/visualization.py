@@ -1,7 +1,5 @@
 import time
 import requests
-import math
-import random
 
 TOKEN = "BBUS-0uskZVL6b5rQLpgl4JYU20HZYxNh03"
 DEVICE_LABEL = "esp32-cam-uni268"
@@ -12,14 +10,16 @@ VARIABLE_LABEL_3 = "person_count"
 
 def build_payload(variable_1: float, variable_2: str, variable_3: int):
     # Creates two random values for sending data
-    density_value = variable_1 # float
-    density_level = variable_2 # str
-    person_count = variable_3 # int
     
     payload = {
-        variable_1: density_value,
-        variable_2: density_level,
-        variable_3: person_count
+        "density_value": variable_1,
+        "density_level": {
+            "value": variable_2,
+            "context": {
+                "unit": "persons/m²"
+            }
+        },
+        "person_count": variable_3
     }
 
     return payload
