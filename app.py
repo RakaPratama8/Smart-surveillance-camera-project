@@ -1,10 +1,20 @@
 import streamlit as st
 import supervision as sv
+import threading
 
 from model.estimator import CrowdDensityEstimation
 from utils.camera_utils import initialize_camera
 from utils.visualization import build_payload, post_request
 
+
+def send_data_in_background(payload):
+    threading.Thread(
+        target=post_request,
+        args=(
+            payload,
+        )
+    ).start()
+    
 def main():
     st.title("Crowd Density Estimation")
     st.write("This application estimates the density of a crowd in a video stream.")
@@ -59,7 +69,7 @@ def main():
             variable_3=density_info[2],
         )
         
-        post_request(payload)
+        send_data_in_background(payload)
         
         density_value.metric("Density Value (persons/m²)", f"{density_info[0]:.2f}")
         density_level.metric("Density Level", density_info[1])
