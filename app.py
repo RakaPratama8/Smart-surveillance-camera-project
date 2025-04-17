@@ -22,9 +22,6 @@ def main():
     st.sidebar.title("Settings")
     conf_threshold = st.sidebar.slider("Confidence Threshold", 0.0, 1.0, 0.5)
     
-    density_level = st.sidebar.empty()
-    person_count = st.sidebar.empty()
-    density_value = st.sidebar.empty()
     
     estimator = CrowdDensityEstimation(
         model_path="./model/yolo11n.pt",
@@ -37,6 +34,20 @@ def main():
     cap = initialize_camera()
     
     frame_placeholder = st.empty()
+    
+    
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        density_level = st.empty()
+    with col2:
+        density_value = st.empty()
+    with col3:
+        person_count = st.empty()
+        
+    
+
+    
     while True:
         ret, frame = cap.read()
         if not ret:
@@ -71,9 +82,9 @@ def main():
         
         send_data_in_background(payload)
         
-        density_value.metric("Density Value (persons/m²)", f"{density_info[0]:.2f}")
-        density_level.metric("Density Level", density_info[1])
-        person_count.metric("Person Count", density_info[2])
+        density_value.metric("Density Value (persons/m²)", f"{density_info[0]:.2f}", border=True)
+        density_level.metric("Density Level", density_info[1], border=True)
+        person_count.metric("Person Count", density_info[2], border=True)
 
     cap.release()
     
