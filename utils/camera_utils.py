@@ -1,13 +1,13 @@
 import cv2
 import supervision as sv
 
-URL = "http://192.168.248.80:81/stream"
+URL = "http://192.168.100.130:81/stream"
 WEBCAM = 0
 
 def initialize_camera():
     """Initializes the camera and returns the VideoCapture object."""
-    # cap = cv2.VideoCapture(URL)
-    cap = cv2.VideoCapture(WEBCAM)
+    cap = cv2.VideoCapture(URL)
+    # cap = cv2.VideoCapture(WEBCAM)
     
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
